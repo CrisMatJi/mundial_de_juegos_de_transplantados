@@ -20,3 +20,13 @@
 footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 23px 5.5vw; color: #75776f; border-top: 1px solid var(--line); font-size: 10px; }.footer-brand { color: var(--ink); font-weight: 700; }.footer-brand span:last-child { font-size: 11px; }footer > a { display: flex; align-items: center; gap: 5px; color: var(--green); text-decoration: none; font-weight: 700; }
 @media (max-width: 1050px) { .topbar { padding-inline: 4vw; }.hero { padding-inline: 7vw; }.content-wrap { width: 92vw; }.match-strip { grid-template-columns: repeat(3, 1fr); }.match-card:nth-child(n+4) { display: none; } }
 @media (max-width: 760px) { .topbar { height: 68px; }.main-nav { display: none; }.live-pill { font-size: 11px; }.hero { display: block; padding: 52px 6vw; }.hero-scoreboard { margin-top: 40px; }.content-wrap { width: 88vw; padding-top: 42px; }.section-heading { align-items: flex-start; flex-direction: column; gap: 13px; }.match-strip { display: flex; overflow-x: auto; margin-right: -6vw; padding-right: 6vw; scroll-snap-type: x mandatory; }.match-card, .match-card:nth-child(n+4) { display: flex; flex: 0 0 245px; scroll-snap-align: start; }.dashboard-grid { grid-template-columns: 1fr; }.groups-grid { grid-template-columns: 1fr; gap: 26px; }.panel { padding: 21px 18px; }.bracket-panel { overflow: hidden; padding-inline: 18px; }.bracket-layout { min-width: 650px; transform: scale(.88); transform-origin: top left; margin-bottom: -45px; }.bracket-footnote { line-height: 1.45; }footer { align-items: flex-start; flex-direction: column; gap: 12px; } }
+
+.status.live { color: #ffb0a5; border-color: rgba(255,255,255,.17); }
+.video-unavailable { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; color: #c9e5d0; text-align: center; padding: 16px; }
+.video-unavailable strong { color: #fff; font: 600 15px 'Space Grotesk'; }
+.video-unavailable span { color: #8ca998; font-size: 10px; }
+.video-unavailable a { display: flex; align-items: center; gap: 5px; margin-top: 5px; color: #f1ca63; font-size: 10px; text-decoration: none; }
+.bracket-layout { grid-template-columns: 1.45fr 1.15fr .82fr; gap: 28px; }
+.semi-round { align-self: center; }
+.semi-match { position: relative; margin: 0 0 56px; padding-left: 51px; }
+@media (max-width: 760px) { .bracket-layout { min-width: 650px; transform: scale(.82); margin-bottom: -58px; } }
