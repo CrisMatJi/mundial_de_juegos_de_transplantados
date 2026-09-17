@@ -77,25 +77,11 @@ const semiFinals = [
 ]
 
 function App() {
-  const [activeView, setActiveView] = useState('Resumen')
   const [matchFilter, setMatchFilter] = useState('Todos')
   const filteredMatches = matchFilter === 'Todos' ? matches : matches.filter((match) => match.status === matchFilter)
 
   return (
     <main className="app-shell">
-      <header className="topbar">
-        <a className="brand" href="#inicio" aria-label="Inicio Mundial de Juegos de Trasplantados">
-          <span className="brand-mark">WT</span>
-          <span><strong>MUNDIAL</strong><small>de trasplantados</small></span>
-        </a>
-        <nav className="main-nav" aria-label="Navegación principal">
-          {['Resumen', 'Partidos', 'Clasificación', 'Bracket'].map((view) => (
-            <button className={activeView === view ? 'nav-link active' : 'nav-link'} key={view} onClick={() => setActiveView(view)}>{view}</button>
-          ))}
-        </nav>
-        <a className="live-pill" href="https://wtgfgateway.org/tournament/cd512e68-53d0-4e92-abbb-2311e565ddfc" target="_blank" rel="noreferrer"><span className="pulse-dot" /> Gateway oficial <ArrowUpRight size={14} /></a>
-      </header>
-
       <section className="hero" id="inicio">
         <div className="hero-copy">
           <p className="eyebrow"><span className="live-dot" /> EN DIRECTO · FRANKFURT 2026</p>
