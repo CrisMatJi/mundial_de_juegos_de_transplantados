@@ -83,7 +83,7 @@ const SUPABASE_URL = 'https://bxkkhwrflrscshrkcdku.supabase.co/rest/v1'
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4a2tod3JmbHJzY3NocmtjZGt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNDg0NTIsImV4cCI6MjA4NzcyNDQ1Mn0.1G9jZ8RDT4NdkHmrOAKgXgPPmOqbQGWn4ap4ztgAr40'
 const GAME_ID = 'cd512e68-53d0-4e92-abbb-2311e565ddfc'
 
-const officialName = (name: string) => ({ Spain: 'España', Wales: 'Gales', England: 'Inglaterra', Mexico: 'México', Germany: 'Alemania' }[name] ?? name)
+const officialName = (name: string) => ({ Spain: 'España', Wales: 'Gales', England: 'Inglaterra', Mexico: 'México', Germany: 'Alemania', Italy: 'Italia' }[name] ?? name)
 
 async function fetchOfficialData() {
   const headers = { apikey: SUPABASE_ANON_KEY }
