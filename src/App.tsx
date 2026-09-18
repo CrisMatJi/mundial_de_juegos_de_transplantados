@@ -25,6 +25,7 @@ type Match = {
 
 type Group = { name: string; teams: string[][] }
 type OfficialTeam = { id: string; name: string; group_id: string }
+type MatchFilter = 'Todos' | 'Finalizado' | 'En directo' | 'Próximo'
 
 const fallbackGroups: Group[] = [
   {
@@ -106,7 +107,7 @@ async function fetchOfficialData() {
 }
 
 function App() {
-  const [matchFilter, setMatchFilter] = useState('Todos')
+  const [matchFilter, setMatchFilter] = useState<MatchFilter>('Todos')
   const [groups, setGroups] = useState(fallbackGroups)
   const [matches, setMatches] = useState(fallbackMatches)
   const [bracket, setBracket] = useState(fallbackBracket)
@@ -159,6 +160,7 @@ function App() {
   }, [])
 
   const filteredMatches = matchFilter === 'Todos' ? matches : matches.filter((match) => match.status === matchFilter)
+  const filterOptions: MatchFilter[] = ['Todos', 'Finalizado', 'En directo', 'Próximo']
 
   return (
     <main className="app-shell">
@@ -185,8 +187,9 @@ function App() {
             <div className="match-body"><div className="country"><span>🇪🇸</span><strong>España</strong></div><div className="match-result">{match.score ? <strong>{match.score}</strong> : <span className="tbd">POR CONFIRMAR</span>}<small>{match.time} · {index === matches.length - 1 ? 'Campo 1' : 'Campo 2'}</small></div><div className="country opponent"><span>{match.opponentFlag}</span><strong>{match.opponent}</strong></div></div>
             <span className={match.status === 'Finalizado' ? 'status done' : match.status === 'En directo' ? 'status live' : 'status upcoming'}>{match.status}</span>
           </article>)}
+          {filteredMatches.length === 0 && <div className="matches-empty"><strong>No hay partidos {matchFilter.toLowerCase()}.</strong><span>La agenda se actualiza automáticamente con Gateway.</span><button type="button" onClick={() => setMatchFilter('Todos')}>Ver todos los partidos</button></div>}
         </div>
-        <div className="filter-row"><span>Mostrar:</span>{['Todos', 'Finalizado', 'En directo', 'Fase final'].map((filter) => <button className={matchFilter === filter ? 'filter active' : 'filter'} key={filter} onClick={() => setMatchFilter(filter)}>{filter}</button>)}</div>
+        <div className="filter-row"><span>Mostrar:</span>{filterOptions.map((filter) => <button type="button" className={matchFilter === filter ? 'filter active' : 'filter'} key={filter} onClick={() => setMatchFilter(filter)}>{filter}</button>)}</div>
 
         <div className="dashboard-grid">
           <section className="panel standings-panel" id="clasificacion"><div className="panel-heading"><div><p className="section-kicker">TABLA EN VIVO</p><h2>Clasificación</h2></div><span className="group-label">GRUPOS <ChevronDown size={15} /></span></div><div className="groups-grid">{groups.map((group) => <div className="group" key={group.name}><div className="group-title"><strong>{group.name}</strong><span>5 equipos</span></div><div className="table-head"><span># / EQUIPO</span><span>P</span><span>DG</span><span>PTS</span></div>{group.teams.map((team, index) => <div className={team[0] === 'Spain' ? 'table-row highlight' : 'table-row'} key={team[0]}><span><b>{index + 1}</b>{team[0] === 'Spain' && <span className="mini-flag">🇪🇸</span>} {team[0]}</span><span>{team[1]}</span><span>{team[5]}</span><strong>{team[6]}</strong></div>)}</div>)}</div><a className="panel-link" href="https://wtgfgateway.org/tournament/cd512e68-53d0-4e92-abbb-2311e565ddfc" target="_blank" rel="noreferrer">Ver tabla completa en Gateway <ArrowUpRight size={15} /></a></section>
